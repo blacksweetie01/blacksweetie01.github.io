@@ -68,7 +68,13 @@
     });
   });
 
-  // 订阅按钮 + 弹窗（全站注入；订阅服务基于 Buttondown）
+  // 订阅按钮 + 弹窗（全站注入；优先 Substack，兜底 Buttondown）
+  var SUB_URL = (window.SITE_CONFIG && window.SITE_CONFIG.subscribe && window.SITE_CONFIG.subscribe.substackUrl) || '';
+  var BDU = (window.SITE_CONFIG && window.SITE_CONFIG.subscribe && window.SITE_CONFIG.subscribe.buttondownUser) ||
+            (window.SITE_CONFIG && window.SITE_CONFIG.buttondownUser) || '';
+  var SUB_OK = !!SUB_URL;
+  var BD_OK = BDU && BDU.indexOf('YOUR_') !== 0;
+
   var nav = document.getElementById('nav-links');
   if (nav) {
     var sb = document.createElement('button');
@@ -77,49 +83,61 @@
     sb.textContent = '订阅';
     nav.appendChild(sb);
   }
+
+  var subBox;
+  if (SUB_OK) {
+    var sUrl = SUB_URL.replace(/\/+$/, '') + '/embed';
+    subBox =
+      '<div class="subscribe-box">' +
+      '  <h2>订阅更新</h2>' +
+      '  <p>留下你的邮箱，本站有新著译或文章发布时，你会收到邮件通知。随时可退订。</p>' +
+      '  <iframe class="substack-embed" src="' + sUrl + '" loading="lazy" title="订阅"></iframe>' +
+      '  <button class="icon-btn subscribe-close" data-subscribe-close>关闭</button>' +
+      '</div>';
+  } else if (BD_OK) {
+    subBox =
+      '<div class="subscribe-box">' +
+      '  <h2>订阅更新</h2>' +
+      '  <p>留下你的邮箱，本站有新著译或文章发布时，你会收到邮件通知。随时可退订。</p>' +
+      '  <form action="https://buttondown.email/api/emails/embed-subscribe/' + BDU + '" method="post" target="_blank">' +
+      '    <input type="email" name="email" placeholder="你的邮箱" required />' +
+      '    <button type="submit">订阅</button>' +
+      '  </form>' +
+      '  <p class="subscribe-msg"></p>' +
+      '  <button class="icon-btn subscribe-close" data-subscribe-close>关闭</button>' +
+      '</div>';
+  } else {
+    subBox =
+      '<div class="subscribe-box">' +
+      '  <h2>订阅更新</h2>' +
+      '  <p>订阅服务正在开通，敬请期待。</p>' +
+      '  <button class="icon-btn subscribe-close" data-subscribe-close>关闭</button>' +
+      '</div>';
+  }
+
   var subOverlay = document.createElement('div');
   subOverlay.className = 'subscribe-overlay';
   subOverlay.id = 'subscribe-overlay';
-  subOverlay.innerHTML =
-    '<div class="subscribe-box">' +
-    '  <h2>订阅更新</h2>' +
-    '  <p>留下你的邮箱，本站有新著译或文章发布时，你会收到邮件通知。随时可退订。</p>' +
-    '  <form>' +
-    '    <input type="email" name="email" placeholder="你的邮箱" required />' +
-    '    <button type="submit">订阅</button>' +
-    '  </form>' +
-    '  <p class="subscribe-msg"></p>' +
-    '  <button class="icon-btn subscribe-close" data-subscribe-close>关闭</button>' +
-    '</div>';
+  subOverlay.innerHTML = subBox;
   document.body.appendChild(subOverlay);
   var subForm = subOverlay.querySelector('form');
   var subMsg = subOverlay.querySelector('.subscribe-msg');
-  var BDU = (window.SITE_CONFIG && window.SITE_CONFIG.buttondownUser) || '';
-  var BD_OK = BDU && BDU.indexOf('YOUR_') !== 0;
-  if (BD_OK) {
-    subForm.setAttribute('action', 'https://buttondown.email/api/emails/embed-subscribe/' + BDU);
-    subForm.setAttribute('method', 'post');
-    subForm.setAttribute('target', '_blank');
-  }
   document.querySelectorAll('[data-subscribe-open]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       subOverlay.classList.add('open');
-      var em = subForm.querySelector('input[type=email]');
+      var em = subForm && subForm.querySelector('input[type=email]');
       if (em) em.focus();
     });
   });
   var subCloseBtn = subOverlay.querySelector('[data-subscribe-close]');
   if (subCloseBtn) subCloseBtn.addEventListener('click', function () { subOverlay.classList.remove('open'); });
   subOverlay.addEventListener('click', function (e) { if (e.target === subOverlay) subOverlay.classList.remove('open'); });
-  subForm.addEventListener('submit', function (e) {
-    if (!BD_OK) {
-      e.preventDefault();
-      subMsg.textContent = '订阅服务正在开通，敬请期待。';
-    } else {
+  if (subForm) {
+    subForm.addEventListener('submit', function () {
       subMsg.textContent = '已提交，请查收确认邮件完成订阅。';
       subForm.querySelector('input[type=email]').value = '';
-    }
-  });
+    });
+  }
 
   // 摄影作品灯箱（点击看大图）
   var lb = document.createElement('div');

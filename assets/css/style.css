@@ -366,6 +366,7 @@ main{padding:3rem 0 4rem}
 .subscribe-box button[type=submit]:hover{opacity:.9}
 .subscribe-msg{margin:.8rem 0 0;font-size:.85rem;color:var(--accent);min-height:1.2em}
 .subscribe-close{margin-top:.9rem}
+.substack-embed{width:100%;min-height:340px;border:0;background:transparent}
 
 /* ============================================================
    教学（teaching）— 课程大纲
