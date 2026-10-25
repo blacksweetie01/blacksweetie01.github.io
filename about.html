@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>关于 · 一般法理学</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="alternate" type="application/rss+xml" title="一般法理学" href="feed.xml" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">一般法理学</a>
+      <button class="menu-toggle" data-menu-toggle aria-label="菜单">菜单</button>
+      <nav id="nav-links" class="nav-links">
+        <a href="works.html">著作</a>
+        <a href="reviews.html">书评</a>
+        <a href="teaching.html">教学</a>
+        <a href="updates.html">动态</a>
+        <a href="notes.html">札记</a>
+        <a href="tags.html">标签</a>
+        <a href="about.html">关于</a>
+        <button class="icon-btn" data-search-open>搜索</button>
+        <button class="icon-btn" data-theme-toggle>主题</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap prose">
+      <h1 class="page-title">关于</h1>
+      <p class="page-lead">本页克制呈现，不抢内容之风头。</p>
+
+      <h2>这是谁</h2>
+      <p>赵英男，中南财经政法大学法学院副教授，中国政法大学法学博士后，北京大学法学博士，美国圣路易斯华盛顿大学人文访问学者。</p>
+
+      <h2>研究方向</h2>
+      <p>比较法与法理学。相关主题可参见<a href="tags.html">标签</a>或具体栏目。</p>
+
+      <h2>联系</h2>
+      <p>邮箱：<a href="mailto:yingnanzhao2010@sina.com">yingnanzhao2010@sina.com</a></p>
+
+      <div class="subscribe">
+        <h2>订阅</h2>
+        <p>通过 <a class="feed-link" href="feed.xml">RSS</a> 或邮件接收更新。</p>
+        <form id="subscribe-form" action="https://buttondown.email/api/emails/embed-subscribe/YOUR_BUTTONDOWN_USERNAME" method="post" target="_blank">
+          <input type="email" name="email" placeholder="你的邮箱" required />
+          <button type="submit">订阅</button>
+        </form>
+        <p class="note">邮件订阅基于 Buttondown（免费、隐私友好）。部署前请在 <code>assets/js/site-config.js</code> 填写你的 Buttondown 用户名——本表单的提交地址会据此自动更新。</p>
+      </div>
+
+      <div class="comments">
+        <h2>评论</h2>
+        <div id="giscus-mount"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>一般法理学</span>
+      <span><a href="about.html">关于</a> · <a href="tags.html">标签</a> · <a href="feed.xml">RSS</a></span>
+    </div>
+  </footer>
+
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-box">
+      <input id="search-input" type="text" placeholder="搜索本站内容…" autocomplete="off" />
+      <div class="hint"><span>按 Esc 关闭</span><span>Cmd/Ctrl + K</span></div>
+      <button class="icon-btn" data-search-close style="margin-top:.8rem">关闭</button>
+    </div>
+  </div>
+
+  <script src="assets/js/site-config.js"></script>
+  <script>
+    (function () {
+      var u = (window.SITE_CONFIG && window.SITE_CONFIG.buttondownUser) || '';
+      var form = document.getElementById('subscribe-form');
+      if (form && u && u.indexOf('YOUR_') !== 0) {
+        form.action = 'https://buttondown.email/api/emails/embed-subscribe/' + u;
+      }
+    })();
+  </script>
+  <script src="assets/js/giscus.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
