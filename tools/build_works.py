@@ -4,6 +4,7 @@
   python3 tools/build_works.py
 """
 import os
+import re
 import json
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -283,6 +284,7 @@ WORKS = [
             ("原书", "Philosophical Foundations of Precedent, Oxford University Press, 2023"),
         ],
         intro="本书对先例在法律、司法裁判与道德实践中的作用展开了宏阔、深入且多元的哲学考察。全书共四十章，汇集了当代法哲学界资深领军学者与新锐研究者的广泛成果，对法律及相关实践推理领域中遵循既往裁判的惯习展开了诸多极具创新性的哲学探究；同时，各章亦系统阐释了法院及其他决策主体在偏离既有先例时可能的正当依据。本书为纪念约瑟夫·拉兹而编，赵英男承担其中第二部分（先例与法律论证，第 9–13 章）的翻译并参与全书校订。",
+        show_afterword=False,
         afterword_title="关于本书的译后记",
         afterword="本书为多人合译（高尚等译，赵英男、樊一江校），书末译后记由主要译者撰写，不单独收录译者个人后记。如需说明个人承担章节或校订情况，可在此补充。",
         afterword_note="目录显示书末有译后记（主要译者署名）。",
@@ -304,6 +306,20 @@ if os.path.exists(_AW_PATH):
             _w["afterword"] = _a["html"]
             _w["afterword_title"] = _a["title"]
             _w["afterword_note"] = _a.get("note", "")
+
+# --------------------------------------------------------------- 排序
+# 著作栏目顺序：作者本人「著」置顶；「译」作按出版时间倒序（新出版在前）；
+# 「校」排在最后。年份相同按月份倒序，再保稳定序。
+def _pub_date(w):
+    for k, v in w["meta"]:
+        if k == "出版时间":
+            m = re.search(r"(\d{4})\s*年\s*(\d{1,2})?", v)
+            if m:
+                return (int(m.group(1)), int(m.group(2)) if m.group(2) else 1)
+    return (0, 0)
+
+_GROUP = {"著": 0, "译": 1, "校": 2}
+WORKS.sort(key=lambda w: (_GROUP.get(w["role"], 2), -_pub_date(w)[0], -_pub_date(w)[1]))
 
 # --------------------------------------------------------------- 模板
 def header(title, rel=""):
@@ -414,6 +430,15 @@ def build_detail(w):
         items = "".join(f'<li><a href="{url}" target="_blank" rel="noopener">{label}</a></li>' for label, url in w["links"])
         links_html = f'<div class="work-links"><span class="meta-k">相关链接</span><ul>{items}</ul></div>'
     note_html = f'<p class="muted small">{w["afterword_note"]}</p>' if w.get("afterword_note") else ""
+    if w.get("show_afterword", True):
+        aw_section = (
+            f'      <h2>{w["afterword_title"]}</h2>\n'
+            f'      <div class="afterword" id="aw-{w["slug"]}">{w["afterword"]}</div>\n'
+            f'      <button class="aw-toggle" type="button" data-target="aw-{w["slug"]}" hidden>展开全文</button>\n'
+            f"      {note_html}\n"
+        )
+    else:
+        aw_section = ""
     body = f"""{header(w["title"], rel="../")}
   <main>
     <section class="wrap prose">
@@ -432,11 +457,7 @@ def build_detail(w):
       <h2>内容简介</h2>
       <p>{w['intro']}</p>
 
-      <h2>{w['afterword_title']}</h2>
-      <div class="afterword" id="aw-{w['slug']}">{w['afterword']}</div>
-      <button class="aw-toggle" type="button" data-target="aw-{w['slug']}" hidden>展开全文</button>
-      {note_html}
-
+      {aw_section}
       {links_html}
 
       <div class="comments">
