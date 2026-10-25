@@ -78,6 +78,23 @@ main{padding:3rem 0 4rem}
 .intro p{font-size:1.15rem;color:var(--ink);line-height:1.9}
 .intro .rule-short{width:3rem;height:1px;background:var(--accent);margin:1.5rem 0;border:0}
 
+/* 首页：四位学者之声 */
+.voices{margin:0 auto 3.5rem}
+.voices-lead{color:var(--ink-soft);font-size:1rem;margin:0 0 2.4rem;max-width:38rem;line-height:1.85}
+.voice-list{display:flex;flex-direction:column}
+.voice{position:relative;padding:2rem 0 1.8rem 3.6rem;border-top:1px solid var(--rule)}
+.voice:first-child{border-top:0;padding-top:0}
+.voice-no{position:absolute;left:0;top:1.9rem;font-family:var(--serif-en);font-size:1.7rem;font-weight:600;color:var(--accent);opacity:.42;line-height:1}
+.voice-quote{margin:0;font-family:var(--serif-en);font-style:italic;font-size:1.12rem;line-height:1.85;color:var(--ink)}
+.voice-zh{margin:.8rem 0 0;font-size:.98rem;line-height:1.95;color:var(--ink-soft)}
+.voice-by{margin:1.1rem 0 0;font-family:var(--serif-cn);font-size:.98rem;color:var(--accent);letter-spacing:.02em}
+.voice-by .en{font-family:var(--serif-en);font-style:italic}
+@media(max-width:720px){
+  .voice{padding-left:2.4rem}
+  .voice-no{font-size:1.4rem;top:1.7rem}
+  .voice-quote{font-size:1.04rem}
+}
+
 /* ---------- 文章列表 ---------- */
 .post-list{list-style:none;margin:0;padding:0}
 .post-item{padding:1.4rem 0;border-top:1px solid var(--rule)}

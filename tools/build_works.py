@@ -388,7 +388,6 @@ def build_grid():
   <main>
     <section class="wrap-wide">
       <h1 class="page-title">著作</h1>
-      <p class="page-lead">写作、编纂与翻译的全部图书。点击封面或书名进入该书的<strong>基本信息</strong>与<strong>译后记 / 后记</strong>。</p>
 
       <div class="works-grid">
 {chr(10).join(cards)}

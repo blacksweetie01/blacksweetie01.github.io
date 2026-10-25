@@ -113,10 +113,9 @@ def build():
 
     body = """  <main>
     <section class="wrap">
-      <h1 class="page-title">标签</h1>
-      <p class="page-lead">全站内容按主题聚合的索引。著作与书评的标签在此归并，点标签跳至相关篇目。</p>
+    <h1 class="page-title">标签</h1>
 
-      <div class="tag-cloud">
+    <div class="tag-cloud">
 %s
       </div>
 
