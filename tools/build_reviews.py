@@ -187,7 +187,7 @@ def header(title, rel=""):
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{rel}assets/css/style.css" />
+  <link rel="stylesheet" href="{rel}assets/css/style.css?v=2" />
   <link rel="alternate" type="application/rss+xml" title="一般法理学" href="{rel}feed.xml" />
 </head>
 <body>
@@ -226,9 +226,9 @@ FOOTER = """
     </div>
   </div>
 
-  <script src="{rel}assets/js/site-config.js"></script>
-  <script src="{rel}assets/js/giscus.js"></script>
-  <script src="{rel}assets/js/main.js"></script>
+  <script src="{rel}assets/js/site-config.js?v=2"></script>
+  <script src="{rel}assets/js/giscus.js?v=2"></script>
+  <script src="{rel}assets/js/main.js?v=2"></script>
 </body>
 </html>
 """
