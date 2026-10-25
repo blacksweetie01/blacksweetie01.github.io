@@ -68,11 +68,84 @@
     });
   });
 
+  // 订阅按钮 + 弹窗（全站注入；订阅服务基于 Buttondown）
+  var nav = document.getElementById('nav-links');
+  if (nav) {
+    var sb = document.createElement('button');
+    sb.className = 'icon-btn';
+    sb.setAttribute('data-subscribe-open', '');
+    sb.textContent = '订阅';
+    nav.appendChild(sb);
+  }
+  var subOverlay = document.createElement('div');
+  subOverlay.className = 'subscribe-overlay';
+  subOverlay.id = 'subscribe-overlay';
+  subOverlay.innerHTML =
+    '<div class="subscribe-box">' +
+    '  <h2>订阅更新</h2>' +
+    '  <p>留下你的邮箱，本站有新著译或文章发布时，你会收到邮件通知。随时可退订。</p>' +
+    '  <form>' +
+    '    <input type="email" name="email" placeholder="你的邮箱" required />' +
+    '    <button type="submit">订阅</button>' +
+    '  </form>' +
+    '  <p class="subscribe-msg"></p>' +
+    '  <button class="icon-btn subscribe-close" data-subscribe-close>关闭</button>' +
+    '</div>';
+  document.body.appendChild(subOverlay);
+  var subForm = subOverlay.querySelector('form');
+  var subMsg = subOverlay.querySelector('.subscribe-msg');
+  var BDU = (window.SITE_CONFIG && window.SITE_CONFIG.buttondownUser) || '';
+  var BD_OK = BDU && BDU.indexOf('YOUR_') !== 0;
+  if (BD_OK) {
+    subForm.setAttribute('action', 'https://buttondown.email/api/emails/embed-subscribe/' + BDU);
+    subForm.setAttribute('method', 'post');
+    subForm.setAttribute('target', '_blank');
+  }
+  document.querySelectorAll('[data-subscribe-open]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      subOverlay.classList.add('open');
+      var em = subForm.querySelector('input[type=email]');
+      if (em) em.focus();
+    });
+  });
+  var subCloseBtn = subOverlay.querySelector('[data-subscribe-close]');
+  if (subCloseBtn) subCloseBtn.addEventListener('click', function () { subOverlay.classList.remove('open'); });
+  subOverlay.addEventListener('click', function (e) { if (e.target === subOverlay) subOverlay.classList.remove('open'); });
+  subForm.addEventListener('submit', function (e) {
+    if (!BD_OK) {
+      e.preventDefault();
+      subMsg.textContent = '订阅服务正在开通，敬请期待。';
+    } else {
+      subMsg.textContent = '已提交，请查收确认邮件完成订阅。';
+      subForm.querySelector('input[type=email]').value = '';
+    }
+  });
+
+  // 摄影作品灯箱（点击看大图）
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.id = 'lightbox';
+  document.body.appendChild(lb);
+  lb.addEventListener('click', function () { lb.classList.remove('open'); lb.innerHTML = ''; });
+  document.querySelectorAll('.photo-item img').forEach(function (img) {
+    img.addEventListener('click', function () {
+      lb.innerHTML = '';
+      var big = document.createElement('img');
+      big.src = img.src;
+      lb.appendChild(big);
+      lb.classList.add('open');
+    });
+  });
+
   // Cmd/Ctrl + K 唤起搜索
   document.addEventListener('keydown', function (e) {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
       if (searchBtn) searchBtn.click();
+    }
+    if (e.key === 'Escape') {
+      subOverlay.classList.remove('open');
+      lb.classList.remove('open');
     }
   });
 })();

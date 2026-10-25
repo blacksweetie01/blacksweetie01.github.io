@@ -332,7 +332,7 @@ def header(title, rel=""):
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{rel}assets/css/style.css?v=2" />
+  <link rel="stylesheet" href="{rel}assets/css/style.css?v=3" />
   <link rel="alternate" type="application/rss+xml" title="一般法理学" href="{rel}feed.xml" />
 </head>
 <body>
@@ -343,6 +343,7 @@ def header(title, rel=""):
       <nav id="nav-links" class="nav-links">
         <a href="{rel}works.html">著作</a>
         <a href="{rel}reviews.html">书评</a>
+        <a href="{rel}city.html">城市</a>
         <a href="{rel}teaching.html">教学</a>
         <a href="{rel}updates.html">动态</a>
         <a href="{rel}notes.html">札记</a>
@@ -371,9 +372,9 @@ FOOTER = """
     </div>
   </div>
 
-  <script src="{rel}assets/js/site-config.js?v=2"></script>
-  <script src="{rel}assets/js/giscus.js?v=2"></script>
-  <script src="{rel}assets/js/main.js?v=2"></script>
+  <script src="{rel}assets/js/site-config.js?v=3"></script>
+  <script src="{rel}assets/js/giscus.js?v=3"></script>
+  <script src="{rel}assets/js/main.js?v=3"></script>
 </body>
 </html>
 """

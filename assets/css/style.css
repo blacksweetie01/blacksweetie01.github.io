@@ -324,3 +324,45 @@ main{padding:3rem 0 4rem}
 @media(max-width:720px){
   .tag-items{grid-template-columns:1fr}
 }
+
+/* ============================================================
+   城市（city）
+   ============================================================ */
+.city-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.6rem;margin-top:1.2rem}
+.city-tile{display:block;border:1px solid var(--rule);background:var(--paper-2);color:var(--ink);transition:border-color .2s}
+.city-tile:hover{border-color:var(--accent)}
+.city-tile-img{aspect-ratio:3/2;overflow:hidden;border-bottom:1px solid var(--rule)}
+.city-tile-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.city-tile:hover .city-tile-img img{transform:scale(1.03)}
+.city-tile-body{padding:.9rem 1rem 1.1rem}
+.city-en{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--accent-soft)}
+.city-tile-body h2{font-family:var(--serif-cn);font-weight:600;font-size:1.15rem;margin:.2rem 0 .1rem}
+.city-tile .city-tag{margin:0;color:var(--ink-soft);font-size:.88rem;letter-spacing:.04em}
+.city-count{display:inline-block;margin-top:.55rem;font-family:var(--mono);font-size:.7rem;color:var(--accent)}
+.title-en{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--ink-soft);margin-left:.7rem;font-weight:400}
+
+/* 摄影作品集 */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.2rem;margin-top:1.4rem}
+.photo-item{margin:0;border:1px solid var(--rule);background:var(--paper-2)}
+.photo-item img{width:100%;display:block;cursor:zoom-in}
+.photo-item figcaption{padding:.55rem .8rem;font-size:.84rem;color:var(--ink-soft);border-top:1px solid var(--rule)}
+@media(max-width:720px){.photo-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* 灯箱（点击看大图） */
+.lightbox{position:fixed;inset:0;background:color-mix(in srgb,#000 78%,transparent);display:none;z-index:60;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:min(1100px,94vw);max-height:88vh;border:1px solid var(--rule)}
+
+/* 订阅弹窗（全站） */
+.subscribe-overlay{position:fixed;inset:0;background:color-mix(in srgb,var(--paper) 80%,transparent);backdrop-filter:blur(4px);display:none;z-index:55;align-items:flex-start;justify-content:center;padding-top:16vh}
+.subscribe-overlay.open{display:flex}
+.subscribe-box{background:var(--paper);border:1px solid var(--rule);width:min(26rem,92vw);padding:1.6rem 1.5rem}
+.subscribe-box h2{font-family:var(--serif-cn);font-size:1.25rem;font-weight:600;margin:0 0 .4rem}
+.subscribe-box p{margin:0 0 1rem;font-size:.92rem;color:var(--ink-soft)}
+.subscribe-box form{display:flex;gap:.6rem;flex-wrap:wrap}
+.subscribe-box input[type=email]{flex:1;min-width:12rem;font-family:var(--serif-cn);font-size:.95rem;padding:.55rem .7rem;border:1px solid var(--rule);background:var(--paper);color:var(--ink);outline:none}
+.subscribe-box input[type=email]:focus{border-color:var(--accent)}
+.subscribe-box button[type=submit]{font-family:var(--serif-cn);font-size:.95rem;padding:.55rem 1.1rem;border:1px solid var(--accent);background:var(--accent);color:var(--paper);cursor:pointer}
+.subscribe-box button[type=submit]:hover{opacity:.9}
+.subscribe-msg{margin:.8rem 0 0;font-size:.85rem;color:var(--accent);min-height:1.2em}
+.subscribe-close{margin-top:.9rem}
