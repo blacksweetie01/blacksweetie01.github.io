@@ -144,6 +144,7 @@ main{padding:3rem 0 4rem}
 /* 译后记 / 相关链接 */
 .afterword{font-size:.98rem;line-height:1.9;color:var(--ink);position:relative}
 .afterword.collapsible{max-height:32em;overflow:hidden;transition:max-height .45s ease}
+.afterword.collapsible.expanded{max-height:none}
 .afterword.collapsible:not(.expanded)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5em;background:linear-gradient(to bottom,transparent,var(--paper) 88%);pointer-events:none}
 .aw-toggle{margin-top:.9rem;background:none;border:0;border-bottom:1px solid var(--accent);color:var(--accent);font-family:var(--serif-cn);font-size:.92rem;letter-spacing:.04em;cursor:pointer;padding:.1rem .15rem}
 .aw-toggle:hover{opacity:.78}
