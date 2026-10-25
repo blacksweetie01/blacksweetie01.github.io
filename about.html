@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=5" />
+  <link rel="stylesheet" href="assets/css/style.css?v=6" />
   <link rel="alternate" type="application/rss+xml" title="一般法理学" href="feed.xml" />
 </head>
 <body>
@@ -45,14 +45,7 @@
 
       <div class="subscribe">
         <h2>订阅</h2>
-        <p>通过 <a class="feed-link" href="feed.xml">RSS</a> 或邮件接收更新。</p>
-        <div id="sub-about">
-          <form id="subscribe-form" action="https://buttondown.email/api/emails/embed-subscribe/YOUR_BUTTONDOWN_USERNAME" method="post" target="_blank">
-            <input type="email" name="email" placeholder="你的邮箱" required />
-            <button type="submit">订阅</button>
-          </form>
-        </div>
-        <p class="note" id="sub-note">邮件订阅基于 Buttondown（免费、隐私友好）。部署前请在 <code>assets/js/site-config.js</code> 填写你的 Buttondown 用户名——本表单的提交地址会据此自动更新。</p>
+        <p>通过 <a class="feed-link" href="feed.xml">RSS</a> 或邮件接收更新。点击站点右上角的「订阅」按钮，输入邮箱即可；本站更新时会自动发邮件通知你。</p>
       </div>
 
       <div class="comments">
@@ -77,25 +70,8 @@
     </div>
   </div>
 
-  <script src="assets/js/site-config.js?v=5"></script>
-  <script>
-    (function () {
-      var cfg = window.SITE_CONFIG || {};
-      var sub = cfg.subscribe || {};
-      var u = sub.buttondownUser || cfg.buttondownUser || '';
-      var sUrl = sub.substackUrl || '';
-      var box = document.getElementById('sub-about');
-      var note = document.getElementById('sub-note');
-      var form = document.getElementById('subscribe-form');
-      if (sUrl) {
-        if (box) box.innerHTML = '<iframe class="substack-embed" src="' + sUrl.replace(/\/+$/, '') + '/embed" loading="lazy" title="订阅"></iframe>';
-        if (note) note.textContent = '邮件订阅基于 Substack（免费、订阅者无限）。在 Substack 发布新内容时，订阅者会收到邮件通知。';
-      } else if (form && u && u.indexOf('YOUR_') !== 0) {
-        form.action = 'https://buttondown.email/api/emails/embed-subscribe/' + u;
-      }
-    })();
-  </script>
-  <script src="assets/js/giscus.js?v=5"></script>
-  <script src="assets/js/main.js?v=5"></script>
+  <script src="assets/js/site-config.js?v=6"></script>
+  <script src="assets/js/giscus.js?v=6"></script>
+  <script src="assets/js/main.js?v=6"></script>
 </body>
 </html>

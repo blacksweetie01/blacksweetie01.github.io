@@ -68,12 +68,9 @@
     });
   });
 
-  // 订阅按钮 + 弹窗（全站注入；优先 Substack，兜底 Buttondown）
-  var SUB_URL = (window.SITE_CONFIG && window.SITE_CONFIG.subscribe && window.SITE_CONFIG.subscribe.substackUrl) || '';
-  var BDU = (window.SITE_CONFIG && window.SITE_CONFIG.subscribe && window.SITE_CONFIG.subscribe.buttondownUser) ||
-            (window.SITE_CONFIG && window.SITE_CONFIG.buttondownUser) || '';
-  var SUB_OK = !!SUB_URL;
-  var BD_OK = BDU && BDU.indexOf('YOUR_') !== 0;
+  // 订阅按钮 + 弹窗（全站注入；邮件订阅后端：SendFox）
+  var SFX_ID = (window.SITE_CONFIG && window.SITE_CONFIG.subscribe && window.SITE_CONFIG.subscribe.sendfoxFormId) || '';
+  var SFX_OK = SFX_ID && SFX_ID.indexOf('YOUR_') !== 0;
 
   var nav = document.getElementById('nav-links');
   if (nav) {
@@ -85,32 +82,19 @@
   }
 
   var subBox;
-  if (SUB_OK) {
-    var sUrl = SUB_URL.replace(/\/+$/, '') + '/embed';
+  if (SFX_OK) {
     subBox =
       '<div class="subscribe-box">' +
       '  <h2>订阅更新</h2>' +
       '  <p>留下你的邮箱，本站有新著译或文章发布时，你会收到邮件通知。随时可退订。</p>' +
-      '  <iframe class="substack-embed" src="' + sUrl + '" loading="lazy" title="订阅"></iframe>' +
-      '  <button class="icon-btn subscribe-close" data-subscribe-close>关闭</button>' +
-      '</div>';
-  } else if (BD_OK) {
-    subBox =
-      '<div class="subscribe-box">' +
-      '  <h2>订阅更新</h2>' +
-      '  <p>留下你的邮箱，本站有新著译或文章发布时，你会收到邮件通知。随时可退订。</p>' +
-      '  <form action="https://buttondown.email/api/emails/embed-subscribe/' + BDU + '" method="post" target="_blank">' +
-      '    <input type="email" name="email" placeholder="你的邮箱" required />' +
-      '    <button type="submit">订阅</button>' +
-      '  </form>' +
-      '  <p class="subscribe-msg"></p>' +
+      '  <div id="sendfox-mount"></div>' +
       '  <button class="icon-btn subscribe-close" data-subscribe-close>关闭</button>' +
       '</div>';
   } else {
     subBox =
       '<div class="subscribe-box">' +
       '  <h2>订阅更新</h2>' +
-      '  <p>订阅服务正在开通，敬请期待。</p>' +
+      '  <p>订阅服务正在开通，敬请期待。你也可以通过 <a class="feed-link" href="feed.xml" target="_blank">RSS</a> 订阅本站更新。</p>' +
       '  <button class="icon-btn subscribe-close" data-subscribe-close>关闭</button>' +
       '</div>';
   }
@@ -120,24 +104,35 @@
   subOverlay.id = 'subscribe-overlay';
   subOverlay.innerHTML = subBox;
   document.body.appendChild(subOverlay);
-  var subForm = subOverlay.querySelector('form');
-  var subMsg = subOverlay.querySelector('.subscribe-msg');
+
+  // 懒加载 SendFox 表单（点击「订阅」首次打开时注入，避免每页都加载第三方脚本）
+  var sfxInited = false;
+  function initSendFox() {
+    if (!SFX_OK || sfxInited) return;
+    sfxInited = true;
+    var mount = document.getElementById('sendfox-mount');
+    if (!mount) return;
+    var d = document.createElement('div');
+    d.className = 'sendfox-form';
+    d.id = SFX_ID;
+    mount.appendChild(d);
+    var s = document.createElement('script');
+    s.src = 'https://sendfox.com/js/form.js';
+    s.onload = function () {
+      if (window.sendFoxForm) window.sendFoxForm(SFX_ID);
+    };
+    document.body.appendChild(s);
+  }
+
   document.querySelectorAll('[data-subscribe-open]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       subOverlay.classList.add('open');
-      var em = subForm && subForm.querySelector('input[type=email]');
-      if (em) em.focus();
+      initSendFox();
     });
   });
   var subCloseBtn = subOverlay.querySelector('[data-subscribe-close]');
   if (subCloseBtn) subCloseBtn.addEventListener('click', function () { subOverlay.classList.remove('open'); });
   subOverlay.addEventListener('click', function (e) { if (e.target === subOverlay) subOverlay.classList.remove('open'); });
-  if (subForm) {
-    subForm.addEventListener('submit', function () {
-      subMsg.textContent = '已提交，请查收确认邮件完成订阅。';
-      subForm.querySelector('input[type=email]').value = '';
-    });
-  }
 
   // 摄影作品灯箱（点击看大图）
   var lb = document.createElement('div');
