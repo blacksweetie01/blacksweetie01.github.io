@@ -366,3 +366,34 @@ main{padding:3rem 0 4rem}
 .subscribe-box button[type=submit]:hover{opacity:.9}
 .subscribe-msg{margin:.8rem 0 0;font-size:.85rem;color:var(--accent);min-height:1.2em}
 .subscribe-close{margin-top:.9rem}
+
+/* ============================================================
+   教学（teaching）— 课程大纲
+   ============================================================ */
+.teaching-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.6rem;margin-top:1.2rem}
+.teach-card{display:block;border:1px solid var(--rule);background:var(--paper-2);color:var(--ink);transition:border-color .2s;padding:1.4rem 1.5rem}
+.teach-card:hover{border-color:var(--accent)}
+.teach-card h3{font-family:var(--serif-cn);font-weight:600;font-size:1.18rem;margin:0 0 .35rem;border:0;color:var(--ink)}
+.teach-card .teach-meta{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--accent);margin:0 0 .7rem}
+.teach-card .teach-desc{color:var(--ink-soft);font-size:.92rem;margin:0;line-height:1.7}
+
+.syl-lead{color:var(--ink-soft);font-size:1.02rem;margin:0 0 2.5rem;letter-spacing:.02em}
+.syl-block{margin:2.4rem 0}
+.syl-block > h2{font-family:var(--serif-cn);font-size:1.25rem;font-weight:600;margin:0 0 .9rem;letter-spacing:.02em;border-bottom:1px solid var(--rule);padding-bottom:.5rem}
+.syl-list{margin:0;padding-left:1.4rem}
+.syl-list li{margin:.45rem 0;line-height:1.8;color:var(--ink)}
+.syl-reading h3{font-family:var(--serif-cn);font-size:1rem;font-weight:600;color:var(--accent);margin:1.2rem 0 .5rem}
+.syl-reading h3:first-child{margin-top:0}
+
+.syl-lectures{margin-top:3rem;border-top:1px solid var(--rule);padding-top:1rem}
+.syl-lecture{padding:2.4rem 0;border-bottom:1px solid var(--rule)}
+.syl-lecture:last-child{border-bottom:0}
+.syl-lecture-h{display:flex;align-items:baseline;gap:.9rem;font-family:var(--serif-cn);font-size:1.3rem;font-weight:600;margin:0 0 1.4rem;letter-spacing:.02em}
+.syl-no{font-family:var(--serif-en);font-size:1.5rem;font-weight:600;color:var(--accent);opacity:.5;line-height:1;flex:none}
+.syl-sub{margin:1.5rem 0}
+.syl-sub > h3{font-family:var(--serif-cn);font-size:1.02rem;font-weight:600;color:var(--ink-soft);margin:0 0 .6rem;letter-spacing:.04em}
+.syl-refgroup{margin:1rem 0}
+.syl-refgroup h4{font-family:var(--serif-cn);font-size:.95rem;font-weight:600;color:var(--accent);margin:0 0 .4rem}
+@media(max-width:720px){
+  .syl-lecture-h{font-size:1.15rem;gap:.6rem}
+}

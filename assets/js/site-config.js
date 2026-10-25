@@ -11,7 +11,7 @@ window.SITE_CONFIG = {
    * 再在 Buttondown 后台把 RSS 源设为本站 https://blacksweetie01.github.io/feed.xml，
    * 订阅者即可定期自动收到网站更新邮件。
    */
-  buttondownUser: "",
+  buttondownUser: "generaljurisprudence",
   giscus: {
     repo: "blacksweetie01/blacksweetie01.github.io",
     repoId: "R_kgDOVWXpqQ",
