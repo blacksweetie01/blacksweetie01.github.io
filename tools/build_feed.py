@@ -25,7 +25,7 @@ from datetime import datetime, timezone
 from xml.sax.saxutils import escape
 
 SITE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE_URL = "https://YOUR_GITHUB_USER.github.io/YOUR_REPO/"  # ← 部署后改为你的真实地址
+SITE_URL = "https://blacksweetie01.github.io/"  # 部署地址（GitHub Pages）
 POSTS_JSON = os.path.join(SITE_ROOT, "content", "posts.json")
 OUT = os.path.join(SITE_ROOT, "feed.xml")
 
