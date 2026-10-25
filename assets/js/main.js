@@ -117,10 +117,10 @@
     d.id = SFX_ID;
     mount.appendChild(d);
     var s = document.createElement('script');
-    s.src = 'https://sendfox.com/js/form.js';
-    s.onload = function () {
-      if (window.sendFoxForm) window.sendFoxForm(SFX_ID);
-    };
+    s.src = 'https://cdn.sendfox.com/js/embed.js';
+    s.setAttribute('data-form', SFX_ID);
+    s.setAttribute('data-api', 'https://sendfox.com');
+    s.async = true;
     document.body.appendChild(s);
   }
 

@@ -14,7 +14,7 @@
  */
 window.SITE_CONFIG = {
   subscribe: {
-    sendfoxFormId: "YOUR_SENDFOX_FORM_ID"   // ← 在 SendFox 新建表单后，把表单 ID 填到这里（去掉 YOUR_ 前缀即生效）
+    sendfoxFormId: "m2o6qd"   // ← SendFox 表单 ID（取自后台 Forms 嵌入代码的 data-form 值）
   },
   giscus: {
     repo: "blacksweetie01/blacksweetie01.github.io",
