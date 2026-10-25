@@ -33,30 +33,10 @@
     <section class="wrap">
       <h1 class="page-title">札记</h1>
 
-      <ul class="post-list">
-        <li class="post-item" data-searchable data-tags="札记 神经权利">
-          <div class="post-meta">研究札记 · 2026-10</div>
-          <h3><a href="#">关于"神经数据"权属的一点想法</a></h3>
-          <p class="post-excerpt">示例条目：阅读若干文献后的初步思考，待进一步展开。</p>
-          <div class="tag-row"><span class="tag">札记</span><span class="tag">神经权利</span></div>
-        </li>
-        <li class="post-item" data-searchable data-tags="札记 读书笔记">
-          <div class="post-meta">读书笔记 · 2026-09</div>
-          <h3><a href="#">《法哲学导论》批注（一）</a></h3>
-          <p class="post-excerpt">示例条目：随读随记的批注片段。</p>
-          <div class="tag-row"><span class="tag">札记</span><span class="tag">读书笔记</span></div>
-        </li>
-        <li class="post-item" data-searchable data-tags="私记">
-          <div class="post-meta">私记 · 不公开</div>
-          <h3><a href="#">随手记一则</a></h3>
-          <p class="post-excerpt">示例条目：少量私人随手记，可选择不公开或折叠显示。</p>
-          <div class="tag-row"><span class="tag">私记</span></div>
-        </li>
-      </ul>
-
-      <div class="placeholder-note">
-        <strong>结构占位</strong>　札记列表与"私记"标记已就位。正式内容由你后续补入；私人随手记可标为不公开。
-      </div>
+      <section class="comments">
+        <h2>评论</h2>
+        <div id="giscus-mount"></div>
+      </section>
     </section>
   </main>
 
@@ -76,5 +56,7 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/giscus.js"></script>
 </body>
 </html>

@@ -393,6 +393,11 @@ def build_grid():
 {chr(10).join(cards)}
       </div>
     </section>
+
+    <section class="wrap comments">
+      <h2>评论</h2>
+      <div id="giscus-mount"></div>
+    </section>
   </main>
 """
     with open(os.path.join(SITE, "works.html"), "w", encoding="utf-8") as f:

@@ -21,6 +21,7 @@ SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(SITE, "tools"))
 
 import build_reviews as BR  # noqa: E402  (复用 REVIEWS 数据)
+import build_works as BW   # noqa: E402  (复用 WORKS 数据)
 
 OUT = os.path.join(SITE, "content", "posts.json")
 
@@ -51,6 +52,27 @@ def review_description(r):
     return "书评：评《%s》%s，原载《%s》。" % (title, who, r["source"])
 
 
+def work_date(w):
+    """著作 RSS 日期：优先取 meta 中的『出版时间』，否则用 year。"""
+    for k, v in w.get("meta", []):
+        if k == "出版时间":
+            m = re.search(r"(\d{4})\s*年\s*(\d{1,2})?", v)
+            if m:
+                y = m.group(1)
+                mo = m.group(2) or "1"
+                return "%s-%02d-01" % (y, int(mo))
+    return "%s-01-01" % w.get("year", "2026")
+
+
+def work_description(w):
+    """著作 RSS 描述：角色 + 作者/译者/出版社/出版时间。"""
+    bits = []
+    for k, v in w.get("meta", []):
+        if k in ("作者", "译者", "出版社", "出版时间"):
+            bits.append("%s：%s" % (k, v))
+    return "著作（%s）：《%s》 %s" % (w.get("role", ""), w["title"], "；".join(bits))
+
+
 def main():
     posts = [SITE_NOTICE]
     for r in BR.REVIEWS:
@@ -63,6 +85,19 @@ def main():
                 "url": "reviews/%s.html" % r["slug"],
                 "date": r["date"],
                 "description": review_description(r),
+                "tags": tags,
+            }
+        )
+    for w in BW.WORKS:
+        tags = [t for t in re.split(r"\s+", w.get("tags", "")) if t]
+        if not tags:
+            tags = ["著作"]
+        posts.append(
+            {
+                "title": w["title"],
+                "url": "works/%s.html" % w["slug"],
+                "date": work_date(w),
+                "description": work_description(w),
                 "tags": tags,
             }
         )

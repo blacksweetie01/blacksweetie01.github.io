@@ -121,6 +121,11 @@ def build():
 
 %s
     </section>
+
+    <section class="wrap comments">
+      <h2>评论</h2>
+      <div id="giscus-mount"></div>
+    </section>
   </main>
 """ % (cloud, "\n".join(sections))
 

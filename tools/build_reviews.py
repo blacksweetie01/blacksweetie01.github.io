@@ -302,6 +302,11 @@ def build_list():
 {chr(10).join(items)}
       </ul>
     </section>
+
+    <section class="wrap comments">
+      <h2>评论</h2>
+      <div id="giscus-mount"></div>
+    </section>
   </main>
 """
     with open(os.path.join(SITE, "reviews.html"), "w", encoding="utf-8") as f:
