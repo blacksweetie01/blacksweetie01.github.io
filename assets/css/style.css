@@ -408,18 +408,23 @@ main{padding:3rem 0 4rem}
 /* ============================================================
    主页「今日」：公历日期 + 农历 + 黄历宜忌（hover 浮层）
    ============================================================ */
-.today-section{margin:0 auto 3rem;display:flex;justify-content:center}
-.today-card{position:relative;width:100%;max-width:30rem;border:1px solid var(--rule);background:var(--paper-2);padding:1.4rem 1.6rem;text-align:center}
-.today-trigger{cursor:pointer;display:inline-block;outline:none}
-.today-trigger:focus-visible{box-shadow:0 0 0 2px var(--accent-soft)}
-.today-date{display:flex;align-items:baseline;justify-content:center;gap:.6rem;flex-wrap:wrap}
-.today-year{font-family:var(--serif-en);font-size:1rem;color:var(--ink-soft);letter-spacing:.04em}
-.today-md{font-family:var(--serif-cn);font-size:2.1rem;font-weight:600;color:var(--ink);line-height:1}
-.today-week{font-family:var(--serif-cn);font-size:1rem;color:var(--accent)}
-.today-lunar{margin-top:.5rem;font-family:var(--serif-cn);font-size:.95rem;color:var(--ink-soft);letter-spacing:.04em}
-.today-pop{position:absolute;top:calc(100% + .6rem);left:50%;transform:translateX(-50%) translateY(6px);width:min(22rem,86vw);background:var(--paper);border:1px solid var(--rule);padding:1rem 1.1rem;z-index:40;text-align:left;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,transform .18s ease;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-[data-theme="dark"] .today-pop{box-shadow:0 8px 24px rgba(0,0,0,.4)}
-.today-card.open .today-pop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.today-card{position:fixed;right:1.25rem;bottom:1.25rem;z-index:60;background:var(--paper-2);border:1px solid var(--rule);border-radius:14px;padding:.85rem 1.1rem;box-shadow:0 10px 30px rgba(0,0,0,.14);text-align:left;max-width:15rem}
+[data-theme="dark"] .today-card{box-shadow:0 10px 30px rgba(0,0,0,.55)}
+.today-trigger{cursor:pointer;display:block;outline:none}
+.today-trigger:focus-visible{box-shadow:0 0 0 2px var(--accent-soft);border-radius:8px}
+.today-date{display:flex;align-items:baseline;gap:.45rem;flex-wrap:wrap}
+.today-year{font-family:var(--serif-en);font-size:.8rem;color:var(--ink-soft);letter-spacing:.04em}
+.today-md{font-family:var(--serif-cn);font-size:1.55rem;font-weight:600;color:var(--ink);line-height:1}
+.today-week{font-family:var(--serif-cn);font-size:.9rem;color:var(--accent)}
+.today-lunar{margin-top:.35rem;font-family:var(--serif-cn);font-size:.85rem;color:var(--ink-soft);letter-spacing:.04em}
+.today-pop{position:absolute;bottom:calc(100% + .7rem);right:0;transform:translateY(8px);width:min(22rem,80vw);background:var(--paper);border:1px solid var(--rule);padding:1rem 1.1rem;z-index:40;text-align:left;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,transform .18s ease;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+[data-theme="dark"] .today-pop{box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.today-card.open .today-pop{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+@media(max-width:720px){
+  .today-card{right:.8rem;bottom:.8rem;padding:.7rem .9rem;max-width:13rem}
+  .today-md{font-size:1.35rem}
+  .today-pop{width:min(20rem,82vw)}
+}
 .pop-h{font-family:var(--serif-cn);font-weight:600;font-size:1.05rem;color:var(--accent);border-bottom:1px solid var(--rule);padding-bottom:.5rem;margin-bottom:.6rem}
 .pop-r{display:grid;grid-template-columns:3.2em 1fr;gap:.6rem;padding:.32rem 0;font-size:.9rem;line-height:1.6}
 .pop-k{color:var(--accent);font-family:var(--serif-cn);text-align:justify;font-weight:600}

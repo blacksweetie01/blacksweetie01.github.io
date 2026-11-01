@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=8" />
+  <link rel="stylesheet" href="assets/css/style.css?v=9" />
   <link rel="alternate" type="application/rss+xml" title="一般法理学" href="feed.xml" />
 </head>
 <body>
@@ -31,20 +31,6 @@
   </header>
 
   <main>
-    <section class="wrap today-section">
-      <div class="today-card" id="today-card">
-        <div class="today-trigger" id="today-trigger" tabindex="0" aria-describedby="today-pop">
-          <div class="today-date">
-            <span class="today-year" id="today-year"></span>
-            <span class="today-md" id="today-md"></span>
-            <span class="today-week" id="today-week"></span>
-          </div>
-          <div class="today-lunar" id="today-lunar">农历加载中…</div>
-        </div>
-        <div class="today-pop" id="today-pop" role="tooltip" aria-hidden="true"></div>
-      </div>
-    </section>
-
     <section class="wrap voices">
       <h2 class="page-title">一般法理学的视野</h2>
       <div class="voice-list">
@@ -124,6 +110,18 @@
     </div>
   </footer>
 
+  <aside class="today-card" id="today-card" aria-label="今日日期与黄历">
+    <div class="today-trigger" id="today-trigger" tabindex="0" aria-describedby="today-pop">
+      <div class="today-date">
+        <span class="today-year" id="today-year"></span>
+        <span class="today-md" id="today-md"></span>
+        <span class="today-week" id="today-week"></span>
+      </div>
+      <div class="today-lunar" id="today-lunar">农历加载中…</div>
+    </div>
+    <div class="today-pop" id="today-pop" role="tooltip" aria-hidden="true"></div>
+  </aside>
+
   <div class="search-overlay" id="search-overlay">
     <div class="search-box">
       <input id="search-input" type="text" placeholder="搜索本站内容…" autocomplete="off" />
@@ -133,7 +131,7 @@
   </div>
 
   <script src="assets/js/lunar.js"></script>
-  <script src="assets/js/today.js?v=8"></script>
-  <script src="assets/js/main.js?v=8"></script>
+  <script src="assets/js/today.js?v=9"></script>
+  <script src="assets/js/main.js?v=9"></script>
 </body>
 </html>
